@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WBDb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="deviceChoiceOverlay" class="device-overlay" role="dialog" aria-modal="true" aria-labelledby="deviceChoiceTitle" aria-describedby="deviceChoiceDesc" hidden>
+        <div class="device-overlay-panel" role="document">
+            <h2 id="deviceChoiceTitle">Choose your experience</h2>
+            <p id="deviceChoiceDesc">Pick Desktop for keyboard & mouse layout, or Phone for touch-friendly layout.</p>
+            <div class="device-buttons">
+                <button id="chooseDesktop" class="btn device-btn">Desktop</button>
+                <button id="choosePhone" class="btn device-btn">Phone</button>
+            </div>
+            <div class="device-remember">
+                <label><input type="checkbox" id="rememberChoice"> Remember my choice</label>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="header-content">
+            <div class="logo" onclick="app.navigateTo('home')">WBDb</div>
+            
+            <button class="menu-btn" onclick="app.toggleSidebar()">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
+                <span>Menu</span>
+            </button>
+
+            <div class="search-container">
+                <div class="search-category-dropdown">
+                    <span>All</span>
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M7 10l5 5 5-5H7z"></path></svg>
+                </div>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search WBDb">
+                <div id="searchResults" class="search-results"></div>
+                <button class="search-btn">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+                </button>
+            </div>
+
+            <div class="header-right">
+                <div class="pro-link">WBDbPro</div>
+                <div class="divider"></div>
+                <button class="nav-watchlist-btn" onclick="app.navigateTo('drinklist')">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"></path></svg>
+                    <span>Drinklist</span>
+                </button>
+                <button class="sign-in-btn">Sign In</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h4>Browse</h4>
+                <ul>
+                    <li onclick="app.navigateTo('home')">Home</li>
+                    <li onclick="app.navigateTo('top')">Top Brands</li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <h4>Quick Picks</h4>
+                <ul id="quickPicks">
+                    <!-- injected by JS if needed -->
+                    <li onclick="app.navigateTo('drinklist')">My Drinklist</li>
+                </ul>
+            </div>
+        </aside>
+
+        <main id="mainContent" class="main-content"></main>
+    </div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "ejs": "https://esm.sh/ejs@3.1.10"
+        }
+    }
+    </script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
